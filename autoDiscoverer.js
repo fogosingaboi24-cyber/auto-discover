@@ -1,13 +1,4 @@
-/* AutoDiscoverer Universal - versão formatada
-   - Observa mudanças no HTML
-   - Detecta perguntas + alternativas
-   - Envia para Pollinations API
-   - Retorna apenas a letra (A–E)
-   - Dispara eventos e pop-ups
-*/
-
 (() => {
-  // ===== CONFIG =====
   let API_ENDPOINT = "https://text.pollinations.ai/openai?model=sur-mistral";
   let API_KEY = "dummy";
   const SYSTEM_PROMPT = "Você é uma IA que deve responder apenas com a letra da alternativa correta: A, B, C, D ou E. Responda apenas com a letra, nada mais.";
@@ -17,7 +8,6 @@
 
   const log = (...a) => console.log("%c[AutoDiscoverer]", "color:teal;font-weight:700", ...a);
 
-  // ===== Helpers =====
   const hash = s => {
     let h = 5381;
     for (let i = 0; i < s.length; i++) h = ((h << 5) + h) + s.charCodeAt(i);
@@ -84,7 +74,7 @@
 
     const uniq = [];
     const seen = new Set();
-    for (const c of candidates.sort((a,b)=>b.score-b.score)) {
+    for (const c of candidates.sort((a,b)=>b.score-a.score)) {
       const key = c.text.slice(0,200);
       if (!seen.has(key)) { seen.add(key); uniq.push(c); }
       if (uniq.length >= 6) break;
@@ -170,6 +160,6 @@
   window.setAutoDiscovererEndpoint = u=>{ API_ENDPOINT=u; log("API endpoint atualizada (não persistida)."); };
 
   log("AutoDiscoverer universal iniciado — observando mudanças e detectando questões automaticamente.");
-  showPopup("AutoDiscoverer ativo (universal) 🔎",2000);
+  showPopup("AutoDiscoverer ativo (universal) 🎯",2000);
 
-})();
+})(
