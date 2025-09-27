@@ -1,4 +1,4 @@
-(() => {
+(function() {
   let API_ENDPOINT = "https://text.pollinations.ai/openai?model=sur-mistral";
   let API_KEY = "dummy";
   const SYSTEM_PROMPT = "Você é uma IA que deve responder apenas com a letra da alternativa correta: A, B, C, D ou E. Responda apenas com a letra, nada mais.";
@@ -161,5 +161,4 @@
 
   log("AutoDiscoverer universal iniciado — observando mudanças e detectando questões automaticamente.");
   showPopup("AutoDiscoverer ativo (universal) 🎯",2000);
-
-})(
+})();
